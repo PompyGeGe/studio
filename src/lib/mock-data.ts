@@ -59,13 +59,13 @@ export const courses: Course[] = [
   },
   {
     id: 3,
-    title: 'Digital Signal Processing',
-    teacher: 'EPFL',
-    platform: 'Coursera',
+    title: '数字信号处理',
+    teacher: '郑君里 - 上海交通大学',
+    platform: '中国大学MOOC',
     imageId: 'course-3',
     category: '数字信号处理',
     status: '已开课',
-    videoUrl: 'https://www.coursera.org/specializations/digital-signal-processing',
+    videoUrl: 'https://www.icourse163.org/course/SJTU-1002527001',
   },
   {
     id: 4,
@@ -80,12 +80,12 @@ export const courses: Course[] = [
   {
     id: 5,
     title: '机器学习',
-    teacher: '吴恩达 - Stanford University',
-    platform: 'Coursera',
+    teacher: '周志华 - 南京大学',
+    platform: '中国大学MOOC',
     imageId: 'course-5',
     category: '机器学习导论',
     status: '已开课',
-    videoUrl: 'https://www.coursera.org/learn/machine-learning',
+    videoUrl: 'https://www.icourse163.org/course/NJU-1001563002',
   },
   {
     id: 6,
