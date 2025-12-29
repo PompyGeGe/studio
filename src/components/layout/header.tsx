@@ -19,8 +19,6 @@ export default function Header() {
   const navItems = ['智慧课堂', '助学提升', '学情监测'];
   const { user, logout } = useAuth();
 
-  const userAvatar = PlaceHolderImages.find(p => p.id === 'avatar-user');
-
   return (
     <header className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-50">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-6">
@@ -52,7 +50,10 @@ export default function Header() {
                       <UserCircle className="h-full w-full" />
                     </AvatarFallback>
                   </Avatar>
-                  <span className="hidden text-sm font-medium md:block">{user.username}</span>
+                  <div className="hidden md:flex flex-col items-start">
+                    <span className="text-sm font-medium leading-none">{user.username}</span>
+                    <span className="text-xs leading-none text-primary-foreground/70">{user.role}</span>
+                  </div>
                 </div>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-56">

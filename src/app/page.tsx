@@ -7,7 +7,7 @@ import CourseGrid from '@/components/courses/course-grid';
 import { courses, filters } from '@/lib/mock-data';
 import { Button } from '@/components/ui/button';
 
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 4;
 
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('全部');
