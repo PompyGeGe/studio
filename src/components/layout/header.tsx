@@ -1,11 +1,29 @@
+'use client';
+
 import Link from 'next/link';
-import { BookOpenCheck, UserCircle } from 'lucide-react';
+import { BookOpenCheck, LogOut, UserCircle } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { useAuth, useUser } from '@/firebase';
+import { useRouter } from 'next/navigation';
 
 export default function Header() {
   const navItems = ['智慧课堂', '助学提升', '学情监测'];
-  const userAvatar = PlaceHolderImages.find(p => p.id === 'avatar-user');
+  const user = useUser();
+  const auth = useAuth();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    if (auth) {
+      await auth.signOut();
+      router.push('/login');
+    }
+  };
 
   return (
     <header className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-50">
@@ -27,12 +45,37 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        <Avatar className="h-9 w-9">
-          <AvatarImage src={userAvatar?.imageUrl} alt="User Avatar" data-ai-hint={userAvatar?.imageHint} />
-          <AvatarFallback>
-            <UserCircle className="h-full w-full" />
-          </AvatarFallback>
-        </Avatar>
+        <div className="flex items-center gap-4">
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <div className="flex cursor-pointer items-center gap-2">
+                  <Avatar className="h-9 w-9">
+                    <AvatarImage src={user.photoURL ?? ''} alt={user.displayName ?? 'User'} />
+                    <AvatarFallback>
+                      <UserCircle className="h-full w-full" />
+                    </AvatarFallback>
+                  </Avatar>
+                  <span className="hidden text-sm font-medium md:block">{user.displayName}</span>
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={handleSignOut}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>登出</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Link href="/login">
+              <Avatar className="h-9 w-9">
+                <AvatarFallback>
+                  <UserCircle className="h-full w-full" />
+                </AvatarFallback>
+              </Avatar>
+            </Link>
+          )}
+        </div>
       </div>
     </header>
   );
