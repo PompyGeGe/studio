@@ -14,28 +14,39 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
 
+  const handleSearch = useCallback((newSearchTerm: string) => {
+    setSearchTerm(newSearchTerm);
+    setActiveFilter(newSearchTerm); // Keep UI in sync
+    setCurrentPage(1);
+  }, []);
+
+  const handleFilterChange = useCallback((newFilter: string) => {
+    if (filters.热门搜索.includes(newFilter) || filters.其他搜索.includes(newFilter)) {
+      setSearchTerm(newFilter);
+      setActiveFilter(newFilter);
+    } else {
+      setSearchTerm('');
+      setActiveFilter(newFilter);
+    }
+    setCurrentPage(1);
+  }, []);
+
   const filteredCourses = useMemo(() => {
     let results = courses;
     const term = searchTerm.toLowerCase();
 
-    // Handle status filter
+    // Handle status filter first
     if (activeFilter !== '全部' && ['已开课', '未开课'].includes(activeFilter)) {
-        results = results.filter(course => course.status === activeFilter);
+      results = results.filter(course => course.status === activeFilter);
     }
-    
-    // Handle search term
+
+    // Then handle search term, only on course title
     if (term) {
-        results = results.filter(course => {
-          const courseInfo = [
-            course.title.toLowerCase(),
-            course.teacher.toLowerCase(),
-            course.category.toLowerCase(),
-            course.platform.toLowerCase()
-          ].join(' ');
-          return courseInfo.includes(term);
-        });
+      results = results.filter(course =>
+        course.title.toLowerCase().includes(term)
+      );
     }
-    
+
     return results;
   }, [activeFilter, searchTerm]);
 
@@ -45,25 +56,6 @@ export default function Home() {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     return filteredCourses.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   }, [filteredCourses, currentPage]);
-  
-  const handleSearch = useCallback((newSearchTerm: string) => {
-    setSearchTerm(newSearchTerm);
-    setActiveFilter(newSearchTerm); // Keep UI in sync
-    setCurrentPage(1);
-  }, []);
-
-  const handleFilterChange = useCallback((newFilter: string) => {
-    if (filters.热门搜索.includes(newFilter) || filters.其他搜索.includes(newFilter)) {
-        // When a tag is clicked, it becomes the search term
-        setSearchTerm(newFilter);
-        setActiveFilter(newFilter);
-    } else {
-        // For "开课状态" filters
-        setSearchTerm(''); // Clear search term if it's a status filter
-        setActiveFilter(newFilter);
-    }
-    setCurrentPage(1); 
-  }, []);
   
   const handlePageChange = (newPage: number) => {
     if (newPage > 0 && newPage <= totalPages) {
