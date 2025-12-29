@@ -43,16 +43,16 @@ export default function Header() {
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <div className="flex cursor-pointer items-center gap-2">
+                <div className="flex cursor-pointer items-center gap-3">
                   <Avatar className="h-9 w-9">
                     <AvatarImage src={user.photoURL} alt={user.username} />
                     <AvatarFallback>
                       <UserCircle className="h-full w-full" />
                     </AvatarFallback>
                   </Avatar>
-                  <div className="hidden md:flex flex-col items-start">
+                  <div className="hidden md:flex items-baseline gap-2">
                     <span className="text-sm font-medium leading-none">{user.username}</span>
-                    <span className="text-xs leading-none text-primary-foreground/70">{user.role}</span>
+                    <span className="text-xs text-primary-foreground/70">({user.role})</span>
                   </div>
                 </div>
               </DropdownMenuTrigger>

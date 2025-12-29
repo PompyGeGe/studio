@@ -14,7 +14,7 @@ export default function CourseCard({ course }: CourseCardProps) {
     const imageHint = placeholder?.imageHint ?? "";
 
     return (
-        <Card className="group flex h-full flex-col overflow-hidden rounded-lg border-none bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
+        <Card className="group flex h-full flex-col overflow-hidden rounded-lg border-none bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
             <CardHeader className="p-0">
                 <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Image
@@ -27,16 +27,16 @@ export default function CourseCard({ course }: CourseCardProps) {
                     />
                 </div>
             </CardHeader>
-            <CardContent className="flex-grow p-4">
-                <h3 className="mb-2 font-headline text-lg font-bold leading-tight">{course.title}</h3>
-                <div className="flex items-center text-sm text-muted-foreground">
-                    <School className="mr-2 h-4 w-4 shrink-0" />
+            <CardContent className="flex-grow p-3">
+                <h3 className="mb-1 font-headline text-base font-bold leading-tight">{course.title}</h3>
+                <div className="flex items-center text-xs text-muted-foreground">
+                    <School className="mr-1.5 h-3 w-3 shrink-0" />
                     <span>{course.teacher}</span>
                 </div>
             </CardContent>
-            <CardFooter className="p-4 pt-0">
-                <div className="flex items-center text-sm text-muted-foreground">
-                    <Clapperboard className="mr-2 h-4 w-4 shrink-0" />
+            <CardFooter className="p-3 pt-0">
+                <div className="flex items-center text-xs text-muted-foreground">
+                    <Clapperboard className="mr-1.5 h-3 w-3 shrink-0" />
                     <span>来源: {course.platform}</span>
                 </div>
             </CardFooter>
