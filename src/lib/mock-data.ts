@@ -91,6 +91,36 @@ export const courses: Course[] = [
     status: '已开课',
     videoUrl: 'https://www.bilibili.com/video/BV1c4411d7jb',
   },
+  {
+    id: 9,
+    title: 'C++程序设计',
+    teacher: '郑莉 - 清华大学',
+    platform: '学堂在线',
+    imageId: 'course-9',
+    category: '程序设计',
+    status: '已开课',
+    videoUrl: 'https://www.xuetangx.com/course/THU08091000267/12582737',
+  },
+  {
+    id: 10,
+    title: '编译原理',
+    teacher: '陈鄞 - 哈尔滨工业大学',
+    platform: '中国大学MOOC',
+    imageId: 'course-10',
+    category: '编译原理',
+    status: '未开课',
+    videoUrl: 'https://www.icourse163.org/course/HIT-1001532001',
+  },
+  {
+    id: 11,
+    title: '大学物理',
+    teacher: '“爱课程”团队',
+    platform: '爱课程',
+    imageId: 'course-11',
+    category: '物理学',
+    status: '已开课',
+    videoUrl: 'http://www.icourses.cn/sCourse/course_3579.html',
+  },
 ];
 
 

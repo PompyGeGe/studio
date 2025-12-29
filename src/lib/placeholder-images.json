@@ -49,6 +49,24 @@
       "imageHint": "computer network"
     },
     {
+      "id": "course-9",
+      "description": "C++ code on a screen",
+      "imageUrl": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1080&auto=format&fit=crop",
+      "imageHint": "c++ code"
+    },
+    {
+      "id": "course-10",
+      "description": "Abstract representation of a compiler",
+      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1080&auto=format&fit=crop",
+      "imageHint": "compiler abstract"
+    },
+    {
+      "id": "course-11",
+      "description": "Physics equations on a chalkboard",
+      "imageUrl": "https://images.unsplash.com/photo-1509233725247-49e657c54213?q=80&w=1080&auto=format&fit=crop",
+      "imageHint": "physics equations"
+    },
+    {
       "id": "avatar-user",
       "description": "Portrait of a person",
       "imageUrl": "https://images.unsplash.com/photo-1521119989659-a83eee488004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjY5Njk0Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
