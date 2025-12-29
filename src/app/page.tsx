@@ -18,21 +18,41 @@ export default function Home() {
     let results = courses;
     const term = searchTerm.toLowerCase();
 
-    if (term) {
-      results = results.filter(course => {
-        const courseTitle = course.title.toLowerCase();
-        const courseTeacher = course.teacher.toLowerCase();
-        const courseCategory = course.category.toLowerCase();
-        const coursePlatform = course.platform.toLowerCase();
-        
-        // Use a simpler, more accurate matching logic
-        return courseTitle.includes(term) ||
-               courseTeacher.includes(term) ||
-               courseCategory.includes(term) ||
-               coursePlatform.includes(term);
-      });
-    } else if (activeFilter !== '全部' && ['已开课', '未开课'].includes(activeFilter)) {
+    if (activeFilter !== '全部' && ['已开课', '未开课'].includes(activeFilter)) {
         results = results.filter(course => course.status === activeFilter);
+    }
+
+    if (term) {
+      if (term.length >= 2) {
+        // Create 2-character n-grams from the search term
+        const nGrams = [];
+        for (let i = 0; i <= term.length - 2; i++) {
+          nGrams.push(term.substring(i, i + 2));
+        }
+        
+        results = results.filter(course => {
+          const courseInfo = [
+            course.title.toLowerCase(),
+            course.teacher.toLowerCase(),
+            course.category.toLowerCase(),
+            course.platform.toLowerCase()
+          ].join(' ');
+          
+          // Check if any of the n-grams are present in the course info
+          return nGrams.some(ngram => courseInfo.includes(ngram));
+        });
+
+      } else { // Fallback for single character search
+        results = results.filter(course => {
+          const courseInfo = [
+            course.title.toLowerCase(),
+            course.teacher.toLowerCase(),
+            course.category.toLowerCase(),
+            course.platform.toLowerCase()
+          ].join(' ');
+          return courseInfo.includes(term);
+        });
+      }
     }
     
     return results;
@@ -47,7 +67,7 @@ export default function Home() {
 
   const handleSearch = useCallback((newSearchTerm: string) => {
     setSearchTerm(newSearchTerm);
-    setActiveFilter(newSearchTerm); // Keep searchTerm and activeFilter in sync for tags
+    setActiveFilter(newSearchTerm);
     setCurrentPage(1);
   }, []);
 
