@@ -34,7 +34,7 @@ export default function FilterSection({
       <div className="flex w-full max-w-2xl items-center space-x-2">
         <Input
           type="text"
-          placeholder="输入关键词进行模糊查询..."
+          placeholder="输入关键词"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && onSearchClick()}

@@ -25,7 +25,7 @@ export default function Home() {
   const filteredCourses = useMemo(() => {
     let results = courses;
 
-    // First, apply text search if a search term is present
+    // Text search from input box
     if (finalSearchTerm) {
       const lowercasedTerm = finalSearchTerm.toLowerCase();
       results = results.filter(course =>
@@ -35,20 +35,34 @@ export default function Home() {
         course.platform.toLowerCase().includes(lowercasedTerm)
       );
     } 
-    // If no text search, apply the active filter tag
+    // Filter from tags
     else if (activeFilter !== '全部') {
-       // Handle status filter
       if (['已开课', '未开课'].includes(activeFilter)) {
         results = results.filter(course => course.status === activeFilter);
       } else {
-        // Handle keyword search from tags
         const lowercasedFilter = activeFilter.toLowerCase();
-        results = results.filter(course =>
-          course.title.toLowerCase().includes(lowercasedFilter) ||
-          course.teacher.toLowerCase().includes(lowercasedFilter) ||
-          course.category.toLowerCase().includes(lowercasedFilter) ||
-          course.platform.toLowerCase().includes(lowercasedFilter)
-        );
+        
+        // Check if the filter is from "热门搜索"
+        if (filters.热门搜索.includes(activeFilter)) {
+          results = results.filter(course => {
+            const courseText = `${course.title} ${course.teacher} ${course.category} ${course.platform}`.toLowerCase();
+            let matchCount = 0;
+            for (let i = 0; i < lowercasedFilter.length; i++) {
+              if (courseText.includes(lowercasedFilter[i])) {
+                matchCount++;
+              }
+            }
+            return matchCount >= 2;
+          });
+        } else {
+          // Default keyword search for other tags
+          results = results.filter(course =>
+            course.title.toLowerCase().includes(lowercasedFilter) ||
+            course.teacher.toLowerCase().includes(lowercasedFilter) ||
+            course.category.toLowerCase().includes(lowercasedFilter) ||
+            course.platform.toLowerCase().includes(lowercasedFilter)
+          );
+        }
       }
     }
 
