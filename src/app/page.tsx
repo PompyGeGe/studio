@@ -17,36 +17,19 @@ export default function Home() {
   const filteredCourses = useMemo(() => {
     let results = courses;
 
-    // Apply filter
     if (activeFilter !== '全部') {
-      if (['已开课', '未开课'].includes(activeFilter)) {
-        results = results.filter(course => course.status === activeFilter);
-      } else {
-        const lowercasedFilter = activeFilter.toLowerCase();
-        
         if (filters.热门搜索.includes(activeFilter)) {
-          results = results.filter(course => {
-            const courseText = `${course.title} ${course.teacher} ${course.category} ${course.platform}`.toLowerCase();
-            let matchCount = 0;
-            for (let i = 0; i < lowercasedFilter.length; i++) {
-              if (courseText.includes(lowercasedFilter[i])) {
-                matchCount++;
-              }
-            }
-            return matchCount >= 2;
-          });
-        } else {
           results = results.filter(course =>
-            course.title.toLowerCase().includes(lowercasedFilter) ||
-            course.teacher.toLowerCase().includes(lowercasedFilter) ||
-            course.category.toLowerCase().includes(lowercasedFilter) ||
-            course.platform.toLowerCase().includes(lowercasedFilter)
+            course.title.toLowerCase().includes(activeFilter.toLowerCase()) ||
+            course.teacher.toLowerCase().includes(activeFilter.toLowerCase()) ||
+            course.category.toLowerCase().includes(activeFilter.toLowerCase()) ||
+            course.platform.toLowerCase().includes(activeFilter.toLowerCase())
           );
+        } else if (['已开课', '未开课'].includes(activeFilter)) {
+            results = results.filter(course => course.status === activeFilter);
         }
-      }
     }
 
-    // Apply search term on top of filtered results
     if (searchTerm) {
       const lowercasedTerm = searchTerm.toLowerCase();
       results = results.filter(course =>
@@ -69,14 +52,19 @@ export default function Home() {
 
   const handleSearch = useCallback((newSearchTerm: string) => {
     setSearchTerm(newSearchTerm);
-    setActiveFilter('全部'); // Reset filter when searching
-    setCurrentPage(1); // CRITICAL: Reset to page 1 for new search
+    setActiveFilter('全部');
+    setCurrentPage(1);
   }, []);
 
   const handleFilterChange = useCallback((newFilter: string) => {
-    setActiveFilter(newFilter);
-    setSearchTerm(''); // Clear search term when a filter is applied
-    setCurrentPage(1); // CRITICAL: Reset to page 1 for new filter
+    if (filters.热门搜索.includes(newFilter)) {
+        setSearchTerm(newFilter);
+        setActiveFilter(newFilter);
+    } else {
+        setSearchTerm('');
+        setActiveFilter(newFilter);
+    }
+    setCurrentPage(1); 
   }, []);
   
   const handlePageChange = (newPage: number) => {
@@ -88,19 +76,20 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen bg-background text-foreground">
       <Header />
-      <main className="container mx-auto flex flex-col px-4 py-2 md:px-6 lg:px-8">
+      <main className="container mx-auto flex flex-col px-4 py-2 md:px-6 lg:px-8 flex-grow">
         <FilterSection
           filters={filters}
           activeFilter={activeFilter}
           onFilterChange={handleFilterChange}
           onSearch={handleSearch}
+          searchTerm={searchTerm}
         />
         <div className="flex-grow">
           <CourseGrid courses={paginatedCourses} />
         </div>
         
         {totalPages > 1 && (
-          <div className="mt-2 flex justify-center items-center gap-4">
+          <div className="mt-2 flex justify-center items-center gap-4 py-2">
             <Button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}

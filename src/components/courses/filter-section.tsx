@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
@@ -8,6 +8,7 @@ type FilterSectionProps = {
   activeFilter: string;
   onFilterChange: (filter: string) => void;
   onSearch: (term: string) => void;
+  searchTerm: string;
 };
 
 export default function FilterSection({
@@ -15,20 +16,24 @@ export default function FilterSection({
   activeFilter,
   onFilterChange,
   onSearch,
+  searchTerm,
 }: FilterSectionProps) {
-  const [localSearchTerm, setLocalSearchTerm] = useState('');
+  const [localSearchTerm, setLocalSearchTerm] = useState(searchTerm);
+
+  useEffect(() => {
+    setLocalSearchTerm(searchTerm);
+  }, [searchTerm]);
 
   const handleSearchClick = () => {
     onSearch(localSearchTerm);
   };
   
   const handleTagClick = (tag: string) => {
-    setLocalSearchTerm(''); 
     onFilterChange(tag);
   };
 
   return (
-    <div className="mb-4 space-y-4 rounded-lg bg-card p-4 shadow-sm">
+    <div className="mb-2 space-y-3 rounded-lg bg-card p-3 shadow-sm">
       <div className="flex w-full max-w-2xl items-center space-x-2">
         <Input
           type="text"
@@ -36,9 +41,9 @@ export default function FilterSection({
           value={localSearchTerm}
           onChange={(e) => setLocalSearchTerm(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}
-          className="h-10 text-base md:text-sm"
+          className="h-9 text-base md:text-sm"
         />
-        <Button type="submit" onClick={handleSearchClick} className="h-10">
+        <Button type="submit" onClick={handleSearchClick} size="sm" className="h-9">
           <Search className="mr-2 h-4 w-4" />
           查询
         </Button>
@@ -53,7 +58,7 @@ export default function FilterSection({
                 key={tag}
                 variant={activeFilter === tag ? 'default' : 'outline'}
                 size="sm"
-                className="rounded-full px-4"
+                className="rounded-full px-3 py-1 text-xs"
                 onClick={() => handleTagClick(tag)}
               >
                 {tag}
