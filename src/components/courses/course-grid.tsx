@@ -19,10 +19,10 @@ export default function CourseGrid({ courses }: CourseGridProps) {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {courses.map(course => (
-        <Link 
-          key={course.id} 
+        <Link
+          key={course.id}
           href={course.videoUrl}
-          className="block h-full outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 rounded-lg"
+          className="block h-full rounded-lg outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
         >
           <CourseCard course={course} />
         </Link>

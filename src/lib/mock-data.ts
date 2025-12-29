@@ -10,7 +10,7 @@ export type Course = {
 };
 
 const allCategories = [
-  '电路设计', '微处理器', '信号处理', '嵌入式系统', '机器学习', '数据结构', '操作系统', '计算机网络'
+  '电路分析基础', '模拟电子技术', '数字信号处理', '嵌入式系统设计', '机器学习导论', '高级数据结构', '操作系统原理', '计算机网络原理'
 ];
 
 const statuses: ('已开课' | '未开课')[] = ['已开课', '未开课'];
@@ -38,7 +38,7 @@ const platforms = [
 
 export const courses: Course[] = Array.from({ length: 8 }, (_, i) => ({
   id: i + 1,
-  title: `${allCategories[i]}核心技术`,
+  title: `${allCategories[i]}`,
   teacher: teachers[i],
   platform: platforms[i],
   imageId: `course-${i + 1}`,
