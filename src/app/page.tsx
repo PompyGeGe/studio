@@ -33,18 +33,31 @@ export default function Home() {
 
   const filteredCourses = useMemo(() => {
     let results = courses;
-    const term = searchTerm.toLowerCase();
+    const term = searchTerm.toLowerCase().trim();
 
     // Handle status filter first
     if (activeFilter !== '全部' && ['已开课', '未开课'].includes(activeFilter)) {
       results = results.filter(course => course.status === activeFilter);
     }
 
-    // Then handle search term, only on course title
+    // Then handle search term on course title only, with "2-character" logic
     if (term) {
-      results = results.filter(course =>
-        course.title.toLowerCase().includes(term)
-      );
+       if (term.length >= 2) {
+        // Create bigrams (2-character slices)
+        const bigrams = [];
+        for (let i = 0; i <= term.length - 2; i++) {
+          bigrams.push(term.slice(i, i + 2));
+        }
+        
+        results = results.filter(course => {
+          const title = course.title.toLowerCase();
+          // Check if the title includes any of the bigrams
+          return bigrams.some(bigram => title.includes(bigram));
+        });
+      } else if (term.length === 1) {
+        // Fallback to single character match
+        results = results.filter(course => course.title.toLowerCase().includes(term));
+      }
     }
 
     return results;
@@ -78,7 +91,7 @@ export default function Home() {
           <CourseGrid courses={paginatedCourses} />
         </div>
         
-        {totalPages > 1 && (
+        {totalPages > 0 && (
           <div className="flex shrink-0 items-center justify-center gap-4 py-2">
             <Button
               onClick={() => handlePageChange(currentPage - 1)}
