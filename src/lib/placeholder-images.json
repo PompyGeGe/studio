@@ -3,74 +3,86 @@
     {
       "id": "course-1",
       "description": "Abstract circuit board",
-      "imageUrl": "https://images.unsplash.com/photo-1651340550839-3b295d930048?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjaXJjdWl0JTIwYm9hcmR8ZW58MHx8fHwxNzY2OTQyNzU3fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1631376178637-392efc9e356b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8Y2lyY3VpdCUyMGJvYXJkfGVufDB8fHx8MTc2Njk0Mjc1N3ww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "circuit board"
     },
     {
       "id": "course-2",
       "description": "Microprocessor on a motherboard",
-      "imageUrl": "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxtaWNyb3Byb2Nlc3NvcnxlbnwwfHx8fDE3NjY5ODk1NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxtaWNyb3Byb2Nlc3NvcnxlbnwwfHx8fDE3NjY5ODk1NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "microprocessor"
     },
     {
       "id": "course-3",
       "description": "Digital signal waves",
-      "imageUrl": "https://images.unsplash.com/photo-1760483087733-1dc9555a20f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxzaWduYWwlMjBwcm9jZXNzaW5nfGVufDB8fHx8MTc2Njk4OTU1M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1563884705074-7c8b15f16295?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8c2lnbmFsJTIwcHJvY2Vzc2luZ3xlbnwwfHx8fDE3NjY5ODk1NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "signal processing"
     },
     {
       "id": "course-4",
       "description": "Embedded system controller",
-      "imageUrl": "https://images.unsplash.com/photo-1761496851678-6c0cc91b4482?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlbWJlZGRlZCUyMHN5c3RlbXxlbnwwfHx8fDE3NjY5ODk1NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1761497715258-d144090c6d02?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxlbWJlZGRlZCUyMHN5c3RlbXxlbnwwfHx8fDE3NjY5ODk1NTN8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "embedded system"
     },
     {
       "id": "course-5",
       "description": "Neural network visualization",
-      "imageUrl": "https://images.unsplash.com/photo-1485796826113-174aa68fd81b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8bWFjaGluZSUyMGxlYXJuaW5nfGVufDB8fHx8MTc2Njk4OTMzNHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1553933899-131780ba04a3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxtYWNoaW5lJTIwbGVhcm5pbmd8ZW58MHx8fHwxNzY2OTg5MzM0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "machine learning"
     },
     {
       "id": "course-6",
       "description": "Abstract data structure nodes",
-      "imageUrl": "https://images.unsplash.com/photo-1664854953181-b12e6dda8b7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkYXRhJTIwc3RydWN0dXJlfGVufDB8fHx8MTc2Njk4NDY3NHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1759984782117-4f333f6efe50?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxkYXRhJTIwc3RydWN0dXJlfGVufDB8fHx8MTc2Njk4NDY3NHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "data structure"
     },
     {
       "id": "course-7",
       "description": "Code on a dark screen representing an operating system",
-      "imageUrl": "https://images.unsplash.com/photo-1602763288580-927cfda37a72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxvcGVyYXRpbmclMjBzeXN0ZW18ZW58MHx8fHwxNzY2OTg5NTUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1633419461186-7d40a38105ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxvcGVyYXRpbmclMjBzeXN0ZW18ZW58MHx8fHwxNzY2OTg5NTUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "operating system"
     },
     {
       "id": "course-8",
       "description": "Network hub with connected cables",
-      "imageUrl": "https://images.unsplash.com/flagged/photo-1579274216947-86eaa4b00475?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxjb21wdXRlciUyMG5ldHdvcmt8ZW58MHx8fHwxNzY2OTg5NTUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1594915440248-1e419eba6611?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb21wdXRlciUyMG5ldHdvcmt8ZW58MHx8fHwxNzY2OTg5NTUzfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "computer network"
     },
     {
       "id": "course-9",
       "description": "C++ code on a screen",
-      "imageUrl": "https://images.unsplash.com/photo-1504639725590-34d0984388bd?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1635775017492-1eb935a082a4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxjJTIwJTIwJTIwY29kZXxlbnwwfHx8fDE3NjcwMTI0Mjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "c++ code"
     },
     {
       "id": "course-10",
       "description": "Abstract representation of a compiler",
-      "imageUrl": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1764265992267-6e47c1a51023?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxjb21waWxlciUyMGFic3RyYWN0fGVufDB8fHx8MTc2NzAxMjQyOHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "compiler abstract"
     },
     {
       "id": "course-11",
       "description": "Physics equations on a chalkboard",
-      "imageUrl": "https://images.unsplash.com/photo-1509233725247-49e657c54213?q=80&w=1080&auto=format&fit=crop",
+      "imageUrl": "https://images.unsplash.com/photo-1758685733737-71f8945decf1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwaHlzaWNzJTIwZXF1YXRpb25zfGVufDB8fHx8MTc2NzAxMjQyOHww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "physics equations"
     },
     {
       "id": "avatar-user",
       "description": "Portrait of a person",
-      "imageUrl": "https://images.unsplash.com/photo-1521119989659-a83eee488004?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjY5Njk0Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxwZXJzb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjY5Njk0Mzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person portrait"
+    },
+    {
+      "id": "user-teacher",
+      "description": "Portrait of a female teacher",
+      "imageUrl": "https://images.unsplash.com/photo-1580894732930-0babd100d356?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxmZW1hbGUlMjB0ZWFjaGVyfGVufDB8fHx8MTc2NzAwNDA0M3ww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "female teacher"
+    },
+    {
+      "id": "user-student",
+      "description": "Portrait of a male student",
+      "imageUrl": "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxtYWxlJTIwc3R1ZGVudHxlbnwwfHx8fDE3NjY5NjY3MzJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "male student"
     }
   ]
 }

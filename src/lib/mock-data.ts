@@ -99,7 +99,7 @@ export const courses: Course[] = [
     imageId: 'course-9',
     category: '程序设计',
     status: '已开课',
-    videoUrl: 'https://www.xuetangx.com/course/THU08091000267/12582737',
+    videoUrl: 'https://www.xuetangx.com/course/THU08091000268/12582738',
   },
   {
     id: 10,
