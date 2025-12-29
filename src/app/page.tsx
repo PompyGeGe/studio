@@ -18,31 +18,13 @@ export default function Home() {
     let results = courses;
     const term = searchTerm.toLowerCase();
 
+    // Handle status filter
     if (activeFilter !== '全部' && ['已开课', '未开课'].includes(activeFilter)) {
         results = results.filter(course => course.status === activeFilter);
     }
-
+    
+    // Handle search term
     if (term) {
-      if (term.length >= 2) {
-        // Create 2-character n-grams from the search term
-        const nGrams = [];
-        for (let i = 0; i <= term.length - 2; i++) {
-          nGrams.push(term.substring(i, i + 2));
-        }
-        
-        results = results.filter(course => {
-          const courseInfo = [
-            course.title.toLowerCase(),
-            course.teacher.toLowerCase(),
-            course.category.toLowerCase(),
-            course.platform.toLowerCase()
-          ].join(' ');
-          
-          // Check if any of the n-grams are present in the course info
-          return nGrams.some(ngram => courseInfo.includes(ngram));
-        });
-
-      } else { // Fallback for single character search
         results = results.filter(course => {
           const courseInfo = [
             course.title.toLowerCase(),
@@ -52,7 +34,6 @@ export default function Home() {
           ].join(' ');
           return courseInfo.includes(term);
         });
-      }
     }
     
     return results;
@@ -64,19 +45,21 @@ export default function Home() {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     return filteredCourses.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   }, [filteredCourses, currentPage]);
-
+  
   const handleSearch = useCallback((newSearchTerm: string) => {
     setSearchTerm(newSearchTerm);
-    setActiveFilter(newSearchTerm);
+    setActiveFilter(newSearchTerm); // Keep UI in sync
     setCurrentPage(1);
   }, []);
 
   const handleFilterChange = useCallback((newFilter: string) => {
     if (filters.热门搜索.includes(newFilter) || filters.其他搜索.includes(newFilter)) {
+        // When a tag is clicked, it becomes the search term
         setSearchTerm(newFilter);
         setActiveFilter(newFilter);
     } else {
-        setSearchTerm('');
+        // For "开课状态" filters
+        setSearchTerm(''); // Clear search term if it's a status filter
         setActiveFilter(newFilter);
     }
     setCurrentPage(1); 
@@ -103,7 +86,7 @@ export default function Home() {
           <CourseGrid courses={paginatedCourses} />
         </div>
         
-        {totalPages > 0 && (
+        {totalPages > 1 && (
           <div className="flex shrink-0 items-center justify-center gap-4 py-2">
             <Button
               onClick={() => handlePageChange(currentPage - 1)}
