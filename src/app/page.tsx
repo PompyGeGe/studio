@@ -16,35 +16,21 @@ export default function Home() {
 
   const filteredCourses = useMemo(() => {
     let results = courses;
-    
-    const term = (searchTerm || (filters.热门搜索.includes(activeFilter) || filters.其他搜索.includes(activeFilter) ? activeFilter : '')).toLowerCase();
+    const term = searchTerm.toLowerCase();
 
     if (term) {
-        results = results.filter(course => {
-            const courseTitle = course.title.toLowerCase();
-            const courseTeacher = course.teacher.toLowerCase();
-            const courseCategory = course.category.toLowerCase();
-            const coursePlatform = course.platform.toLowerCase();
-
-            // Fuzzy match: check if any part of the course info includes any 2-char substring of the term
-            if (term.length >= 2) {
-                let match = false;
-                for (let i = 0; i <= term.length - 2; i++) {
-                    const subTerm = term.substring(i, i + 2);
-                    if (courseTitle.includes(subTerm) || courseTeacher.includes(subTerm) || courseCategory.includes(subTerm) || coursePlatform.includes(subTerm)) {
-                        match = true;
-                        break;
-                    }
-                }
-                if(match) return true;
-            }
-
-            // Fallback to simple includes for shorter terms or full match
-            return courseTitle.includes(term) ||
-                   courseTeacher.includes(term) ||
-                   courseCategory.includes(term) ||
-                   coursePlatform.includes(term);
-        });
+      results = results.filter(course => {
+        const courseTitle = course.title.toLowerCase();
+        const courseTeacher = course.teacher.toLowerCase();
+        const courseCategory = course.category.toLowerCase();
+        const coursePlatform = course.platform.toLowerCase();
+        
+        // Use a simpler, more accurate matching logic
+        return courseTitle.includes(term) ||
+               courseTeacher.includes(term) ||
+               courseCategory.includes(term) ||
+               coursePlatform.includes(term);
+      });
     } else if (activeFilter !== '全部' && ['已开课', '未开课'].includes(activeFilter)) {
         results = results.filter(course => course.status === activeFilter);
     }
@@ -61,7 +47,7 @@ export default function Home() {
 
   const handleSearch = useCallback((newSearchTerm: string) => {
     setSearchTerm(newSearchTerm);
-    setActiveFilter('全部');
+    setActiveFilter(newSearchTerm); // Keep searchTerm and activeFilter in sync for tags
     setCurrentPage(1);
   }, []);
 
@@ -97,7 +83,7 @@ export default function Home() {
           <CourseGrid courses={paginatedCourses} />
         </div>
         
-        {totalPages > 1 && (
+        {totalPages > 0 && (
           <div className="flex shrink-0 items-center justify-center gap-4 py-2">
             <Button
               onClick={() => handlePageChange(currentPage - 1)}
