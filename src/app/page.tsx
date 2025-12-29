@@ -16,7 +16,6 @@ export default function Home() {
 
   const handleSearch = useCallback((newSearchTerm: string) => {
     setSearchTerm(newSearchTerm);
-    setActiveFilter(newSearchTerm); // Keep UI in sync
     setCurrentPage(1);
   }, []);
 
@@ -91,8 +90,8 @@ export default function Home() {
           <CourseGrid courses={paginatedCourses} />
         </div>
         
-        {totalPages > 0 && (
-          <div className="flex shrink-0 items-center justify-center gap-4 py-2">
+        {totalPages > 1 && (
+          <div className="flex items-center justify-center gap-4 py-4">
             <Button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
