@@ -71,10 +71,12 @@ export default function Home() {
   }, [activeFilter, finalSearchTerm]);
 
   const totalPages = Math.ceil(filteredCourses.length / ITEMS_PER_PAGE);
-  const paginatedCourses = filteredCourses.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE,
-    currentPage * ITEMS_PER_PAGE
-  );
+
+  const paginatedCourses = useMemo(() => {
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    return filteredCourses.slice(startIndex, endIndex);
+  }, [filteredCourses, currentPage]);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
