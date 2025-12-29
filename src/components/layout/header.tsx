@@ -14,23 +14,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/context/auth-context';
 import { Button } from '../ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Header() {
   const navItems = ['智慧课堂', '助学提升', '学情监测'];
   const { user, logout } = useAuth();
-
-  const getAvatarUrl = () => {
-    if (user) {
-      if (user.role === '教师') {
-        return PlaceHolderImages.find(p => p.id === 'user-teacher')?.imageUrl;
-      }
-      if (user.role === '学生') {
-        return PlaceHolderImages.find(p => p.id === 'user-student')?.imageUrl;
-      }
-    }
-    return PlaceHolderImages.find(p => p.id === 'avatar-user')?.imageUrl;
-  }
 
   return (
     <header className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-50">
@@ -58,7 +45,7 @@ export default function Header() {
               <DropdownMenuTrigger asChild>
                 <div className="flex cursor-pointer items-center gap-3">
                   <Avatar className="h-9 w-9">
-                    <AvatarImage src={getAvatarUrl()} alt={user.username} />
+                    <AvatarImage src={user.photoURL} alt={user.username} />
                     <AvatarFallback>
                       <UserCircle className="h-full w-full" />
                     </AvatarFallback>
@@ -95,3 +82,5 @@ export default function Header() {
     </header>
   );
 }
+
+    

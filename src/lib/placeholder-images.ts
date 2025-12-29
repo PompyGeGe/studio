@@ -1,10 +1,4 @@
-import data from './placeholder-images.json';
+// This file is intentionally left empty as image data is now directly in mock-data.ts
+export {};
 
-export type ImagePlaceholder = {
-  id: string;
-  description: string;
-  imageUrl: string;
-  imageHint: string;
-};
-
-export const PlaceHolderImages: ImagePlaceholder[] = data.placeholderImages;
+    

@@ -4,7 +4,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { mockUsers, type User } from '@/lib/mock-data';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 interface AuthContextType {
   user: User | null;
@@ -50,14 +49,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       const userToStore = { ...foundUser };
       delete userToStore.password;
       
-      let photoURL = PlaceHolderImages.find(p => p.id === 'avatar-user')?.imageUrl ?? '';
-      if (userToStore.role === '教师') {
-        photoURL = PlaceHolderImages.find(p => p.id === 'user-teacher')?.imageUrl ?? photoURL;
-      } else if (userToStore.role === '学生') {
-        photoURL = PlaceHolderImages.find(p => p.id === 'user-student')?.imageUrl ?? photoURL;
-      }
-      userToStore.photoURL = photoURL;
-
       localStorage.setItem('demo-user', JSON.stringify(userToStore));
       setUser(userToStore);
       router.push('/');
@@ -88,3 +79,5 @@ export function useAuth() {
   }
   return context;
 }
+
+    

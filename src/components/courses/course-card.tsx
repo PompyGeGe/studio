@@ -2,16 +2,13 @@ import Image from 'next/image';
 import type { Course } from '@/lib/mock-data';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { School, Clapperboard } from 'lucide-react';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 type CourseCardProps = {
   course: Course;
 };
 
 export default function CourseCard({ course }: CourseCardProps) {
-    const placeholder = PlaceHolderImages.find(p => p.id === course.imageId);
-    const imageUrl = placeholder?.imageUrl ?? "https://picsum.photos/seed/placeholder/400/250";
-    const imageHint = placeholder?.imageHint ?? "";
+    const imageUrl = course.imageId; // Directly use the URL from mock-data
 
     return (
         <Card className="group flex h-full flex-col overflow-hidden rounded-lg border-none bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
@@ -22,7 +19,6 @@ export default function CourseCard({ course }: CourseCardProps) {
                         alt={course.title}
                         fill
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
-                        data-ai-hint={imageHint}
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                 </div>
@@ -43,3 +39,5 @@ export default function CourseCard({ course }: CourseCardProps) {
         </Card>
     );
 }
+
+    
