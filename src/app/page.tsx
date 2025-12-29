@@ -22,11 +22,10 @@ export default function Home() {
   const handleFilterChange = useCallback((newFilter: string) => {
     if (filters.热门搜索.includes(newFilter) || filters.其他搜索.includes(newFilter)) {
       setSearchTerm(newFilter);
-      setActiveFilter(newFilter);
     } else {
       setSearchTerm('');
-      setActiveFilter(newFilter);
     }
+    setActiveFilter(newFilter);
     setCurrentPage(1);
   }, []);
 
@@ -34,15 +33,12 @@ export default function Home() {
     let results = courses;
     const term = searchTerm.toLowerCase().trim();
 
-    // Handle status filter first
     if (activeFilter !== '全部' && ['已开课', '未开课'].includes(activeFilter)) {
       results = results.filter(course => course.status === activeFilter);
     }
 
-    // Then handle search term on course title only, with "2-character" logic
     if (term) {
        if (term.length >= 2) {
-        // Create bigrams (2-character slices)
         const bigrams = [];
         for (let i = 0; i <= term.length - 2; i++) {
           bigrams.push(term.slice(i, i + 2));
@@ -50,11 +46,9 @@ export default function Home() {
         
         results = results.filter(course => {
           const title = course.title.toLowerCase();
-          // Check if the title includes any of the bigrams
           return bigrams.some(bigram => title.includes(bigram));
         });
       } else if (term.length === 1) {
-        // Fallback to single character match
         results = results.filter(course => course.title.toLowerCase().includes(term));
       }
     }
@@ -86,12 +80,12 @@ export default function Home() {
           onSearch={handleSearch}
           searchTerm={searchTerm}
         />
-        <div className="flex-grow">
+        <div className="mb-4">
           <CourseGrid courses={paginatedCourses} />
         </div>
         
         {totalPages > 1 && (
-          <div className="flex items-center justify-center gap-4 py-4">
+          <div className="flex items-center justify-center gap-4">
             <Button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
