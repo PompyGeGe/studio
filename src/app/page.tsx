@@ -16,28 +16,37 @@ export default function Home() {
 
   const filteredCourses = useMemo(() => {
     let results = courses;
+    
+    const term = (searchTerm || (filters.热门搜索.includes(activeFilter) || filters.其他搜索.includes(activeFilter) ? activeFilter : '')).toLowerCase();
 
-    if (activeFilter !== '全部') {
-        if (filters.热门搜索.includes(activeFilter)) {
-          results = results.filter(course =>
-            course.title.toLowerCase().includes(activeFilter.toLowerCase()) ||
-            course.teacher.toLowerCase().includes(activeFilter.toLowerCase()) ||
-            course.category.toLowerCase().includes(activeFilter.toLowerCase()) ||
-            course.platform.toLowerCase().includes(activeFilter.toLowerCase())
-          );
-        } else if (['已开课', '未开课'].includes(activeFilter)) {
-            results = results.filter(course => course.status === activeFilter);
-        }
-    }
+    if (term) {
+        results = results.filter(course => {
+            const courseTitle = course.title.toLowerCase();
+            const courseTeacher = course.teacher.toLowerCase();
+            const courseCategory = course.category.toLowerCase();
+            const coursePlatform = course.platform.toLowerCase();
 
-    if (searchTerm) {
-      const lowercasedTerm = searchTerm.toLowerCase();
-      results = results.filter(course =>
-        course.title.toLowerCase().includes(lowercasedTerm) ||
-        course.teacher.toLowerCase().includes(lowercasedTerm) ||
-        course.category.toLowerCase().includes(lowercasedTerm) ||
-        course.platform.toLowerCase().includes(lowercasedTerm)
-      );
+            // Fuzzy match: check if any part of the course info includes any 2-char substring of the term
+            if (term.length >= 2) {
+                let match = false;
+                for (let i = 0; i <= term.length - 2; i++) {
+                    const subTerm = term.substring(i, i + 2);
+                    if (courseTitle.includes(subTerm) || courseTeacher.includes(subTerm) || courseCategory.includes(subTerm) || coursePlatform.includes(subTerm)) {
+                        match = true;
+                        break;
+                    }
+                }
+                if(match) return true;
+            }
+
+            // Fallback to simple includes for shorter terms or full match
+            return courseTitle.includes(term) ||
+                   courseTeacher.includes(term) ||
+                   courseCategory.includes(term) ||
+                   coursePlatform.includes(term);
+        });
+    } else if (activeFilter !== '全部' && ['已开课', '未开课'].includes(activeFilter)) {
+        results = results.filter(course => course.status === activeFilter);
     }
     
     return results;
@@ -57,7 +66,7 @@ export default function Home() {
   }, []);
 
   const handleFilterChange = useCallback((newFilter: string) => {
-    if (filters.热门搜索.includes(newFilter)) {
+    if (filters.热门搜索.includes(newFilter) || filters.其他搜索.includes(newFilter)) {
         setSearchTerm(newFilter);
         setActiveFilter(newFilter);
     } else {
@@ -74,9 +83,9 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col h-screen bg-background text-foreground">
+    <div className="flex h-screen flex-col bg-background text-foreground">
       <Header />
-      <main className="container mx-auto flex flex-col px-4 py-2 md:px-6 lg:px-8 flex-grow">
+      <main className="container mx-auto flex flex-1 flex-col px-4 py-2 md:px-6 lg:px-8">
         <FilterSection
           filters={filters}
           activeFilter={activeFilter}
@@ -89,7 +98,7 @@ export default function Home() {
         </div>
         
         {totalPages > 1 && (
-          <div className="mt-2 flex justify-center items-center gap-4 py-2">
+          <div className="flex shrink-0 items-center justify-center gap-4 py-2">
             <Button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
