@@ -7,23 +7,16 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useAuth, useUser } from '@/firebase';
-import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/auth-context';
+import { Button } from '../ui/button';
 
 export default function Header() {
   const navItems = ['智慧课堂', '助学提升', '学情监测'];
-  const user = useUser();
-  const auth = useAuth();
-  const router = useRouter();
-
-  const handleSignOut = async () => {
-    if (auth) {
-      await auth.signOut();
-      router.push('/login');
-    }
-  };
+  const { user, logout } = useAuth();
 
   return (
     <header className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-50">
@@ -51,29 +44,34 @@ export default function Header() {
               <DropdownMenuTrigger asChild>
                 <div className="flex cursor-pointer items-center gap-2">
                   <Avatar className="h-9 w-9">
-                    <AvatarImage src={user.photoURL ?? ''} alt={user.displayName ?? 'User'} />
+                    <AvatarImage src={user.photoURL} alt={user.username} />
                     <AvatarFallback>
                       <UserCircle className="h-full w-full" />
                     </AvatarFallback>
                   </Avatar>
-                  <span className="hidden text-sm font-medium md:block">{user.displayName}</span>
+                  <span className="hidden text-sm font-medium md:block">{user.username}</span>
                 </div>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={handleSignOut}>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel className='font-normal'>
+                  <div className="flex flex-col space-y-1">
+                    <p className="text-sm font-medium leading-none">{user.username}</p>
+                    <p className="text-xs leading-none text-muted-foreground">
+                      {user.role}
+                    </p>
+                  </div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={logout}>
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>登出</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Link href="/login">
-              <Avatar className="h-9 w-9">
-                <AvatarFallback>
-                  <UserCircle className="h-full w-full" />
-                </AvatarFallback>
-              </Avatar>
-            </Link>
+            <Button asChild variant="secondary">
+               <Link href="/login">登录</Link>
+            </Button>
           )}
         </div>
       </div>

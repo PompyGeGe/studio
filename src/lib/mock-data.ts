@@ -10,32 +10,6 @@ export type Course = {
   videoUrl: string;
 };
 
-const allCategories = [
-  '电路分析基础', '模拟电子技术', '数字信号处理', '嵌入式系统设计', '机器学习导论', '高级数据结构', '操作系统原理', '计算机网络原理'
-];
-
-const statuses: ('已开课' | '未开课')[] = ['已开课', '未开课'];
-const teachers = [
-    '清华大学 电子工程系',
-    '北京大学 信息科学技术学院',
-    '上海交通大学 电子信息与电气工程学院',
-    '浙江大学 信息与电子工程学院',
-    '电子科技大学 信息与通信工程学院',
-    '华中科技大学 计算机科学与技术学院',
-    '西安电子科技大学 计算机科学与技术学部',
-    '哈尔滨工业大学 计算学部'
-];
-const platforms = [
-    '学堂在线',
-    '中国大学MOOC',
-    'Coursera',
-    'edX',
-    '智慧树',
-    '超星泛雅',
-    'Bilibili',
-    '慕课网'
-];
-
 export const courses: Course[] = [
   {
     id: 1,
@@ -125,3 +99,16 @@ export const filters = {
   "热门搜索": ['电路设计', '微处理器', '信号处理', '嵌入式系统'],
   "其他搜索": ['机器学习', '数据结构', '操作系统', '计算机网络'],
 };
+
+export type User = {
+  id: string;
+  username: string;
+  password?: string;
+  role: '教师' | '学生';
+  photoURL: string;
+};
+
+export const mockUsers: User[] = [
+  { id: '1', username: '张雪', password: '123456', role: '教师', photoURL: '/avatars/teacher.png' },
+  { id: '2', username: '李航', password: '123456', role: '学生', photoURL: '/avatars/student.png' },
+];

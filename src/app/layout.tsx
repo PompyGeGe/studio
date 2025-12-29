@@ -1,11 +1,11 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { FirebaseClientProvider } from '@/firebase/client-provider';
+import { AuthProvider } from '@/context/auth-context';
 
 export const metadata: Metadata = {
-  title: 'AI Learning Platform',
-  description: 'An AI-powered learning platform to enhance your studies.',
+  title: 'AI 助学系统',
+  description: '一个由AI驱动的个性化学习平台，旨在提升您的学习效率。',
 };
 
 export default function RootLayout({
@@ -21,9 +21,9 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <FirebaseClientProvider>
+        <AuthProvider>
           {children}
-        </FirebaseClientProvider>
+        </AuthProvider>
         <Toaster />
       </body>
     </html>
