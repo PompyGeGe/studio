@@ -109,6 +109,6 @@ export type User = {
 };
 
 export const mockUsers: User[] = [
-  { id: '1', username: '张雪', password: '123456', role: '教师', photoURL: '/avatars/teacher.png' },
-  { id: '2', username: '李航', password: '123456', role: '学生', photoURL: '/avatars/student.png' },
+  { id: '1', username: '张雪', password: '123456', role: '教师', photoURL: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1080&auto=format&fit=crop' },
+  { id: '2', username: '李航', password: '123456', role: '学生', photoURL: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1080&auto=format&fit=crop' },
 ];

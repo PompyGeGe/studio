@@ -13,10 +13,13 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useAuth } from '@/context/auth-context';
 import { Button } from '../ui/button';
+import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export default function Header() {
   const navItems = ['智慧课堂', '助学提升', '学情监测'];
   const { user, logout } = useAuth();
+
+  const userAvatar = PlaceHolderImages.find(p => p.id === 'avatar-user');
 
   return (
     <header className="bg-primary text-primary-foreground shadow-lg sticky top-0 z-50">
