@@ -27,14 +27,14 @@ export default function CourseCard({ course }: CourseCardProps) {
                     />
                 </div>
             </CardHeader>
-            <CardContent className="flex-grow p-3">
-                <h3 className="mb-1 font-headline text-base font-bold leading-tight">{course.title}</h3>
+            <CardContent className="flex-grow p-2">
+                <h3 className="mb-0.5 font-headline text-sm font-bold leading-tight">{course.title}</h3>
                 <div className="flex items-center text-xs text-muted-foreground">
                     <School className="mr-1.5 h-3 w-3 shrink-0" />
-                    <span>{course.teacher}</span>
+                    <span className='text-xs'>{course.teacher}</span>
                 </div>
             </CardContent>
-            <CardFooter className="p-3 pt-0">
+            <CardFooter className="p-2 pt-0">
                 <div className="flex items-center text-xs text-muted-foreground">
                     <Clapperboard className="mr-1.5 h-3 w-3 shrink-0" />
                     <span>来源: {course.platform}</span>

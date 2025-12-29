@@ -28,7 +28,7 @@ export default function FilterSection({
   };
 
   return (
-    <div className="mb-8 space-y-6 rounded-lg bg-card p-4 shadow-sm sm:p-6">
+    <div className="mb-4 space-y-4 rounded-lg bg-card p-4 shadow-sm">
       <div className="flex w-full max-w-2xl items-center space-x-2">
         <Input
           type="text"

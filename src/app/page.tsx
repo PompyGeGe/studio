@@ -88,7 +88,7 @@ export default function Home() {
   return (
     <div className="flex flex-col h-screen bg-background text-foreground">
       <Header />
-      <main className="container mx-auto flex flex-col px-4 py-4 md:px-6 lg:px-8">
+      <main className="container mx-auto flex flex-col px-4 py-2 md:px-6 lg:px-8">
         <FilterSection
           filters={filters}
           activeFilter={activeFilter}
@@ -100,7 +100,7 @@ export default function Home() {
         </div>
         
         {totalPages > 1 && (
-          <div className="mt-4 flex justify-center items-center gap-4">
+          <div className="mt-2 flex justify-center items-center gap-4">
             <Button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
