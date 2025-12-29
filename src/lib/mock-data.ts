@@ -6,6 +6,7 @@ export type Course = {
   imageId: string;
   category: string;
   status: '已开课' | '未开课';
+  videoUrl: string;
 };
 
 const allCategories = [
@@ -43,6 +44,7 @@ export const courses: Course[] = Array.from({ length: 8 }, (_, i) => ({
   imageId: `course-${i + 1}`,
   category: allCategories[i],
   status: statuses[i % 2],
+  videoUrl: '#',
 }));
 
 export const filters = {
