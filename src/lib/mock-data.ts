@@ -99,7 +99,7 @@ export const courses: Course[] = [
   },
   {
     id: 7,
-    title: '操作系统',
+    title: '操作系统原理',
     teacher: '向勇/陈渝 - 清华大学',
     platform: '学堂在线',
     imageId: 'course-7',
@@ -109,7 +109,7 @@ export const courses: Course[] = [
   },
   {
     id: 8,
-    title: '计算机网络微课堂',
+    title: '计算机网络',
     teacher: '湖科大教书匠',
     platform: 'Bilibili',
     imageId: 'course-8',
