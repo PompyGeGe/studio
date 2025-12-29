@@ -22,6 +22,8 @@ export default function CourseGrid({ courses }: CourseGridProps) {
         <Link
           key={course.id}
           href={course.videoUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="block h-full rounded-lg outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
         >
           <CourseCard course={course} />
