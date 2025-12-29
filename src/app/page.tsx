@@ -17,6 +17,7 @@ export default function Home() {
   const filteredCourses = useMemo(() => {
     let results = courses;
 
+    // Apply filter
     if (activeFilter !== '全部') {
       if (['已开课', '未开课'].includes(activeFilter)) {
         results = results.filter(course => course.status === activeFilter);
@@ -45,6 +46,7 @@ export default function Home() {
       }
     }
 
+    // Apply search term on top of filtered results
     if (searchTerm) {
       const lowercasedTerm = searchTerm.toLowerCase();
       results = results.filter(course =>
@@ -62,21 +64,26 @@ export default function Home() {
 
   const paginatedCourses = useMemo(() => {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    return filteredCourses.slice(startIndex, endIndex);
+    return filteredCourses.slice(startIndex, startIndex + ITEMS_PER_PAGE);
   }, [filteredCourses, currentPage]);
 
   const handleSearch = useCallback((newSearchTerm: string) => {
     setSearchTerm(newSearchTerm);
-    setActiveFilter('全部');
-    setCurrentPage(1);
+    setActiveFilter('全部'); // Reset filter when searching
+    setCurrentPage(1); // CRITICAL: Reset to page 1 for new search
   }, []);
 
   const handleFilterChange = useCallback((newFilter: string) => {
     setActiveFilter(newFilter);
-    setSearchTerm('');
-    setCurrentPage(1);
+    setSearchTerm(''); // Clear search term when a filter is applied
+    setCurrentPage(1); // CRITICAL: Reset to page 1 for new filter
   }, []);
+  
+  const handlePageChange = (newPage: number) => {
+    if (newPage > 0 && newPage <= totalPages) {
+        setCurrentPage(newPage);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -95,7 +102,7 @@ export default function Home() {
         {totalPages > 1 && (
           <div className="mt-8 flex justify-center items-center gap-4">
             <Button
-              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
               variant="outline"
             >
@@ -105,7 +112,7 @@ export default function Home() {
               第 {currentPage} 页 / 共 {totalPages} 页
             </span>
             <Button
-              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
               variant="outline"
             >
