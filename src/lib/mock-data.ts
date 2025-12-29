@@ -18,7 +18,7 @@ export const courses: Course[] = Array.from({ length: 8 }, (_, i) => ({
   id: i + 1,
   title: `${allCategories[i]}核心技术`,
   teacher: `电子科技大学 ${i + 1}系`,
-  platform: `平台 ${String.fromCharCode(65 + i)}`,
+  platform: i === 0 ? '清华大学官网' : `平台 ${String.fromCharCode(65 + i)}`,
   imageId: `course-${i + 1}`,
   category: allCategories[i],
   status: statuses[i % 2],
