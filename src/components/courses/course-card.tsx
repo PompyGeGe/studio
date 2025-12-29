@@ -15,7 +15,7 @@ export default function CourseCard({ course }: CourseCardProps) {
     const imageHint = placeholder?.imageHint ?? "";
 
     return (
-        <Link href={course.videoUrl} passHref>
+        <Link href={course.videoUrl} className="block h-full">
             <Card className="group flex h-full flex-col overflow-hidden rounded-lg border-none bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2">
                 <CardHeader className="p-0">
                     <div className="relative aspect-[16/10] w-full overflow-hidden">
