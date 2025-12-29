@@ -119,7 +119,7 @@ export const courses: Course[] = [
     imageId: 'course-11',
     category: '物理学',
     status: '已开课',
-    videoUrl: 'http://www.icourses.cn/sCourse/course_3579.html',
+    videoUrl: 'http://www.icourses.cn/sCourse/course_3578.html',
   },
 ];
 
