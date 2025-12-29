@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import type { Course } from '@/lib/mock-data';
 import CourseCard from './course-card';
 
@@ -18,7 +19,9 @@ export default function CourseGrid({ courses }: CourseGridProps) {
   return (
     <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {courses.map(course => (
-        <CourseCard key={course.id} course={course} />
+        <Link key={course.id} href={course.videoUrl} className="block h-full">
+          <CourseCard course={course} />
+        </Link>
       ))}
     </div>
   );
