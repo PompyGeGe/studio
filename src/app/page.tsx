@@ -12,34 +12,12 @@ const ITEMS_PER_PAGE = 8;
 export default function Home() {
   const [activeFilter, setActiveFilter] = useState('全部');
   const [searchTerm, setSearchTerm] = useState('');
-  const [finalSearchTerm, setFinalSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-
-  const handleSearch = useCallback(() => {
-    setFinalSearchTerm(searchTerm);
-    setActiveFilter('全部');
-    setCurrentPage(1);
-  }, [searchTerm]);
-
-  const setActiveAndClearSearch = useCallback((filter: string) => {
-    setSearchTerm('');
-    setFinalSearchTerm('');
-    setActiveFilter(filter);
-    setCurrentPage(1);
-  }, []);
 
   const filteredCourses = useMemo(() => {
     let results = courses;
 
-    if (finalSearchTerm) {
-      const lowercasedTerm = finalSearchTerm.toLowerCase();
-      results = results.filter(course =>
-        course.title.toLowerCase().includes(lowercasedTerm) ||
-        course.teacher.toLowerCase().includes(lowercasedTerm) ||
-        course.category.toLowerCase().includes(lowercasedTerm) ||
-        course.platform.toLowerCase().includes(lowercasedTerm)
-      );
-    } else if (activeFilter !== '全部') {
+    if (activeFilter !== '全部') {
       if (['已开课', '未开课'].includes(activeFilter)) {
         results = results.filter(course => course.status === activeFilter);
       } else {
@@ -67,8 +45,18 @@ export default function Home() {
       }
     }
 
+    if (searchTerm) {
+      const lowercasedTerm = searchTerm.toLowerCase();
+      results = results.filter(course =>
+        course.title.toLowerCase().includes(lowercasedTerm) ||
+        course.teacher.toLowerCase().includes(lowercasedTerm) ||
+        course.category.toLowerCase().includes(lowercasedTerm) ||
+        course.platform.toLowerCase().includes(lowercasedTerm)
+      );
+    }
+    
     return results;
-  }, [activeFilter, finalSearchTerm]);
+  }, [activeFilter, searchTerm]);
 
   const totalPages = Math.ceil(filteredCourses.length / ITEMS_PER_PAGE);
 
@@ -78,6 +66,18 @@ export default function Home() {
     return filteredCourses.slice(startIndex, endIndex);
   }, [filteredCourses, currentPage]);
 
+  const handleSearch = useCallback((newSearchTerm: string) => {
+    setSearchTerm(newSearchTerm);
+    setActiveFilter('全部');
+    setCurrentPage(1);
+  }, []);
+
+  const handleFilterChange = useCallback((newFilter: string) => {
+    setActiveFilter(newFilter);
+    setSearchTerm('');
+    setCurrentPage(1);
+  }, []);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Header />
@@ -85,10 +85,8 @@ export default function Home() {
         <FilterSection
           filters={filters}
           activeFilter={activeFilter}
-          setActiveFilter={setActiveAndClearSearch}
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          handleSearch={handleSearch}
+          onFilterChange={handleFilterChange}
+          onSearch={handleSearch}
         />
         <div className="flex-grow">
           <CourseGrid courses={paginatedCourses} />

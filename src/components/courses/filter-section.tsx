@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
@@ -5,28 +6,25 @@ import { Search } from 'lucide-react';
 type FilterSectionProps = {
   filters: Record<string, string[]>;
   activeFilter: string;
-  setActiveFilter: (filter: string) => void;
-  searchTerm: string;
-  setSearchTerm: (term: string) => void;
-  handleSearch: () => void;
+  onFilterChange: (filter: string) => void;
+  onSearch: (term: string) => void;
 };
 
 export default function FilterSection({
   filters,
   activeFilter,
-  setActiveFilter,
-  searchTerm,
-  setSearchTerm,
-  handleSearch,
+  onFilterChange,
+  onSearch,
 }: FilterSectionProps) {
-  const onSearchClick = () => {
-    setActiveFilter('全部'); // Reset tag filter when performing a text search
-    handleSearch();
+  const [localSearchTerm, setLocalSearchTerm] = useState('');
+
+  const handleSearchClick = () => {
+    onSearch(localSearchTerm);
   };
   
-  const onTagClick = (tag: string) => {
-    setSearchTerm(''); // Reset text search when clicking a tag
-    setActiveFilter(tag);
+  const handleTagClick = (tag: string) => {
+    setLocalSearchTerm(''); 
+    onFilterChange(tag);
   };
 
   return (
@@ -35,12 +33,12 @@ export default function FilterSection({
         <Input
           type="text"
           placeholder="输入关键词"
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && onSearchClick()}
+          value={localSearchTerm}
+          onChange={(e) => setLocalSearchTerm(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}
           className="h-10 text-base md:text-sm"
         />
-        <Button type="submit" onClick={onSearchClick} className="h-10">
+        <Button type="submit" onClick={handleSearchClick} className="h-10">
           <Search className="mr-2 h-4 w-4" />
           查询
         </Button>
@@ -56,7 +54,7 @@ export default function FilterSection({
                 variant={activeFilter === tag ? 'default' : 'outline'}
                 size="sm"
                 className="rounded-full px-4"
-                onClick={() => onTagClick(tag)}
+                onClick={() => handleTagClick(tag)}
               >
                 {tag}
               </Button>
