@@ -1,6 +1,6 @@
 {
   "circuit_analysis": {
-    "src": "https://images.unsplash.com/photo-1518770660439-4636190af475",
+    "src": "https://picsum.photos/seed/circuit-board/600/400",
     "width": 600,
     "height": 400,
     "hint": "circuit board"
@@ -12,7 +12,7 @@
     "hint": "electronics hardware"
   },
   "signals_systems": {
-    "src": "https://images.unsplash.com/photo-1588373304128-76572733948e",
+    "src": "https://picsum.photos/seed/signal-processing/600/400",
     "width": 600,
     "height": 400,
     "hint": "signal processing"
@@ -24,43 +24,43 @@
     "hint": "embedded system"
   },
   "machine_learning": {
-    "src": "https://images.unsplash.com/photo-1620712943543-2858200f7426",
+    "src": "https://picsum.photos/seed/machine-learning/600/400",
     "width": 600,
     "height": 400,
     "hint": "machine learning"
   },
   "data_structures": {
-    "src": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5",
+    "src": "https://picsum.photos/seed/data-structure/600/400",
     "width": 600,
     "height": 400,
     "hint": "data structure"
   },
   "operating_systems": {
-    "src": "https://images.unsplash.com/photo-1614741118884-62ac1e3b123a",
+    "src": "https://picsum.photos/seed/operating-system/600/400",
     "width": 600,
     "height": 400,
     "hint": "operating system"
   },
   "computer_networks": {
-    "src": "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7",
+    "src": "https://picsum.photos/seed/computer-network/600/400",
     "width": 600,
     "height": 400,
     "hint": "computer network"
   },
   "cpp_programming": {
-    "src": "https://images.unsplash.com/photo-1542831371-29b0f74f9713",
+    "src": "https://picsum.photos/seed/cpp-code/600/400",
     "width": 600,
     "height": 400,
     "hint": "c++ code"
   },
   "compiler_principles": {
-    "src": "https://images.unsplash.com/photo-1504639725590-34d0984388bd",
+    "src": "https://picsum.photos/seed/compiler-code/600/400",
     "width": 600,
     "height": 400,
     "hint": "compiler code"
   },
   "university_physics": {
-    "src": "https://images.unsplash.com/photo-1623223259972-68e314a275e7",
+    "src": "https://picsum.photos/seed/physics-blackboard/600/400",
     "width": 600,
     "height": 400,
     "hint": "physics blackboard"
