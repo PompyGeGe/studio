@@ -6,7 +6,7 @@
     "hint": "circuit board"
   },
   "analog_electronics": {
-    "src": "https://images.unsplash.com/photo-1555431182-0c3e7ade3979",
+    "src": "https://picsum.photos/seed/analog-electronics/600/400",
     "width": 600,
     "height": 400,
     "hint": "electronics hardware"
@@ -18,7 +18,7 @@
     "hint": "signal processing"
   },
   "embedded_systems": {
-    "src": "https://images.unsplash.com/photo-1550745165-9bc0b252726a",
+    "src": "https://picsum.photos/seed/embedded-system/600/400",
     "width": 600,
     "height": 400,
     "hint": "embedded system"
