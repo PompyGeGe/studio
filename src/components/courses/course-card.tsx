@@ -1,4 +1,7 @@
 
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import type { Course } from '@/lib/mock-data';
 import imageManifest from '@/lib/placeholder-images.json';
@@ -11,19 +14,28 @@ type CourseCardProps = {
 
 export default function CourseCard({ course }: CourseCardProps) {
     const imageDetails = imageManifest[course.imageId];
+    const [imageSrc, setImageSrc] = useState(imageDetails.src);
+
+    const handleImageError = () => {
+        // Prevent an infinite loop if the fallback image also fails
+        if (imageSrc !== imageDetails.fallbackSrc) {
+            setImageSrc(imageDetails.fallbackSrc);
+        }
+    };
 
     return (
         <Card className="group flex h-full flex-col overflow-hidden rounded-lg border-none bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
             <CardHeader className="p-0">
                 <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Image
-                        src={imageDetails.src}
+                        src={imageSrc}
                         alt={course.title}
                         width={imageDetails.width}
                         height={imageDetails.height}
                         data-ai-hint={imageDetails.hint}
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        onError={handleImageError}
                     />
                 </div>
             </CardHeader>
