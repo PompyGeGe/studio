@@ -1,5 +1,7 @@
+
 import Image from 'next/image';
 import type { Course } from '@/lib/mock-data';
+import imageManifest from '@/lib/placeholder-images.json';
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import { School, Clapperboard } from 'lucide-react';
 
@@ -8,16 +10,18 @@ type CourseCardProps = {
 };
 
 export default function CourseCard({ course }: CourseCardProps) {
-    const imageUrl = course.imageId; // Directly use the URL from mock-data
+    const imageDetails = imageManifest[course.imageId];
 
     return (
         <Card className="group flex h-full flex-col overflow-hidden rounded-lg border-none bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
             <CardHeader className="p-0">
                 <div className="relative aspect-[16/10] w-full overflow-hidden">
                     <Image
-                        src={imageUrl}
+                        src={imageDetails.src}
                         alt={course.title}
-                        fill
+                        width={imageDetails.width}
+                        height={imageDetails.height}
+                        data-ai-hint={imageDetails.hint}
                         className="object-cover transition-transform duration-300 group-hover:scale-105"
                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
@@ -39,5 +43,3 @@ export default function CourseCard({ course }: CourseCardProps) {
         </Card>
     );
 }
-
-    

@@ -1,4 +1,4 @@
-// This file is intentionally left empty as image data is now directly in mock-data.ts
-export {};
 
-    
+import imageManifest from './placeholder-images.json';
+
+export default imageManifest;
